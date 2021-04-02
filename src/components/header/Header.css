@@ -1,0 +1,9 @@
+.header {
+  margin-bottom: 1rem;
+}
+.header__title {
+  text-align: center;
+  font-weight: bold;
+  color: tomato;
+  font-size: 3rem;
+}

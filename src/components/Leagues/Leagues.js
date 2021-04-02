@@ -1,6 +1,6 @@
 import League from './League'
 
-let Leagues = props => {
+const Leagues = props => {
   return (
     <ul>
       {props.competitions &&

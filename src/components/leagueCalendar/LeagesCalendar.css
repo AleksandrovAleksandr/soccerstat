@@ -1,0 +1,11 @@
+.leageCalendar {
+  margin: 0 auto;
+  border-collapse: collapse;
+}
+
+caption {
+  color: #bbbbbb;
+  font-size: 24px;
+  text-align: center;
+  caption-side: top;
+}

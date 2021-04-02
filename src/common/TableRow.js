@@ -1,3 +1,5 @@
+import './TableRow.css'
+
 const TableRow = ({homeTeam, awayTeam, date}) => {
   const months = [
     'января',
@@ -18,13 +20,13 @@ const TableRow = ({homeTeam, awayTeam, date}) => {
   const day = d.getDate()
   const year = d.getFullYear()
   return (
-    <div>
-      <div>{homeTeam}</div>
-      <div>{awayTeam}</div>
-      <p>
+    <tr>
+      <td className="cell">{homeTeam}</td>
+      <td className="cell">{awayTeam}</td>
+      <td className="cell">
         {day} {months[month]} {year}
-      </p>
-    </div>
+      </td>
+    </tr>
   )
 }
 

@@ -1,5 +1,6 @@
 import {useDispatch} from 'react-redux'
 import {NavLink} from 'react-router-dom'
+import './Team.css'
 
 import unitedFlag from '../../images/all-poker-rooms.png'
 
@@ -13,14 +14,14 @@ const Team = ({team, crestUrl, id}) => {
     dispatch(setNameSelectedTeam(team))
   }
   return (
-    <li>
+    <li className="team__card">
       <NavLink
         to={'/TeamCalendar/' + id + '/' + team}
         onClick={() => {
           handleChange(id, team)
         }}
       >
-        {team}
+        <h3 className="team__title">{team}</h3>
         <img width="80" src={crestUrl || unitedFlag} alt=""></img>
       </NavLink>
     </li>

@@ -3,22 +3,14 @@ import {connect} from 'react-redux'
 import {
   setSelectedDateFrom,
   setSelectedDateTo,
-  setTeamsCalendar,
+  requestTeamCalendar,
 } from '../../redux/actions/actions'
 import TeamCalendar from './TeamCalendar'
 import {DatePicker, Space} from 'antd'
 
 import moment from 'moment'
-import {getTeamCalendar} from '../../api/api'
 
 class TeamsCalendarContainer extends React.Component {
-  requestTeamCalendar = (selectedTeam, dateFrom, dateTo) => {
-    return async dispatch => {
-      let data = await getTeamCalendar(selectedTeam, dateFrom, dateTo)
-      dispatch(setTeamsCalendar(data.matches))
-    }
-  }
-
   handleDateFromChange(object, string) {
     this.requestTeamCalendar(this.props.id, string, this.props.dateTo)
     this.props.setSelectedDateFrom(string)
@@ -28,7 +20,7 @@ class TeamsCalendarContainer extends React.Component {
     this.props.setSelectedDateTo(string)
   }
   componentDidMount() {
-    this.requestTeamCalendar(
+    this.props.requestTeamCalendar(
       this.props.match.params.id ? this.props.match.params.id : '57',
       this.props.dateFrom,
       this.props.dateTo
@@ -71,4 +63,5 @@ const mapStateToProps = state => ({
 export default connect(mapStateToProps, {
   setSelectedDateFrom,
   setSelectedDateTo,
+  requestTeamCalendar,
 })(TeamsCalendarContainer)

@@ -3,6 +3,7 @@ import {useDispatch} from 'react-redux'
 import {NavLink} from 'react-router-dom'
 import {setSelectedLeague} from '../../redux/actions/actions'
 import unitedFlag from '../../images/all-poker-rooms.png'
+import './Leage.css'
 
 let League = ({competition, id, ensignUrl}) => {
   const dispatch = useDispatch()
@@ -25,14 +26,14 @@ let League = ({competition, id, ensignUrl}) => {
   ]
   if (arr.includes(id)) {
     return (
-      <li>
+      <li className="leage__card">
         <NavLink
           to={`/LeagueCalendar/${id}`}
           onClick={e => {
             handleChange(id)
           }}
         >
-          {competition}
+          <h3>{competition}</h3>
           <img
             width="80"
             src={ensignUrl || unitedFlag}
@@ -43,8 +44,8 @@ let League = ({competition, id, ensignUrl}) => {
     )
   } else {
     return (
-      <li>
-        {competition}
+      <li className="leage__card leage">
+        <h3 className="leage__title">{competition}</h3>
         <img
           width="80"
           src={ensignUrl || unitedFlag}

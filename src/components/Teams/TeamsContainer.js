@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Teams from './Teams'
 import {Input} from 'antd'
-import {getTeams} from '../../api/api'
-import {setTeams} from '../../redux/actions/actions'
+import {requestTeams} from '../../redux/actions/actions'
 const {Search} = Input
 
 const filterTeams = (teams, filterValue) => {
@@ -22,15 +21,8 @@ class TeamsContainer extends React.Component {
     this.state = {filterValue: ''}
   }
 
-  requestTeams = () => {
-    return async dispatch => {
-      let data = await getTeams()
-      dispatch(setTeams(data.teams))
-    }
-  }
-
   componentDidMount() {
-    this.requestTeams()
+    this.props.requestTeams()
     if (this.props.history.location.search) {
       this.setState({
         filterValue: `${this.props.history.location.search.split('=')[1]}`,
@@ -69,4 +61,4 @@ const mapStateToProps = state => ({
   totalTeamsCount: state.teamsPage.count,
 })
 
-export default connect(mapStateToProps)(TeamsContainer)
+export default connect(mapStateToProps, {requestTeams})(TeamsContainer)

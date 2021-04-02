@@ -1,0 +1,22 @@
+.menu {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+.menu__link {
+  border-bottom: 2px solid transparent;
+  color: red;
+  text-transform: uppercase;
+  font-weight: bold;
+  transition: all 0.5s;
+}
+.menu__link:active,
+.menu__link:hover,
+.menu__link.active {
+  color: red;
+  border-bottom: 2px solid red;
+}

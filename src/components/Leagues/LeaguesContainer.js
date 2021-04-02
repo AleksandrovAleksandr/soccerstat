@@ -2,8 +2,7 @@ import React from 'react'
 import {connect} from 'react-redux'
 import Leagues from './Leagues'
 import {Input} from 'antd'
-import {setLeagues} from '../../redux/actions/actions'
-import {getCompetitions} from '../../api/api'
+import {requestCompetitions, setSeason} from '../../redux/actions/actions'
 const {Search} = Input
 
 const filterLeagues = (competitions, filterValue) => {
@@ -36,16 +35,8 @@ class LeaguesContainer extends React.Component {
     }
   }
 
-  requestCompetitions = props => {
-    return async dispatch => {
-      let data = await getCompetitions()
-      // dispatch(setLeagues(data.competitions))
-      props.setLeagues(data.competitions)
-    }
-  }
-
   componentDidMount() {
-    this.requestCompetitions()
+    this.props.requestCompetitions()
     if (this.props.history.location.search) {
       this.setState({
         filterValue: `${this.props.history.location.search.split('=')[1]}`,
@@ -98,8 +89,6 @@ const mapStateToProps = state => ({
   season: state.userSetting.season,
 })
 
-const mapDispatchToProps = dispatch => ({
-  setLeagues: data => dispatch(setLeagues(data)),
-})
-
-export default connect(mapStateToProps, mapDispatchToProps)(LeaguesContainer)
+export default connect(mapStateToProps, {requestCompetitions, setSeason})(
+  LeaguesContainer
+)
